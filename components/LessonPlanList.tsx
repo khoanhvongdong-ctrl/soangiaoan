@@ -1,6 +1,7 @@
+
 import React from 'react';
-import { LessonPlan } from '../types';
-import LessonPlanListItem from './LessonPlanListItem';
+import { LessonPlan } from '../types.ts';
+import LessonPlanListItem from './LessonPlanListItem.tsx';
 
 interface LessonPlanListProps {
   plans: LessonPlan[];

@@ -1,11 +1,12 @@
+
 import React, { useState, useCallback, useEffect } from 'react';
-import { generateLessonPlan } from './services/geminiService';
-import FileUpload from './components/FileUpload';
-import LessonPlanDisplay from './components/LessonPlanDisplay';
-import Loader from './components/Loader';
-import LessonPlanList from './components/LessonPlanList';
-import { FileInfo, LessonPlan } from './types';
-import { extractTextFromFile } from './utils/fileProcessor';
+import { generateLessonPlan } from './services/geminiService.ts';
+import FileUpload from './components/FileUpload.tsx';
+import LessonPlanDisplay from './components/LessonPlanDisplay.tsx';
+import Loader from './components/Loader.tsx';
+import LessonPlanList from './components/LessonPlanList.tsx';
+import { FileInfo, LessonPlan } from './types.ts';
+import { extractTextFromFile } from './utils/fileProcessor.ts';
 
 const App: React.FC = () => {
   const [fileInfo, setFileInfo] = useState<FileInfo | null>(null);

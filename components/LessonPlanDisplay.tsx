@@ -1,6 +1,7 @@
 
+
 import React, { useMemo, useState } from 'react';
-import Loader from './Loader';
+import Loader from './Loader.tsx';
 import { Document, Packer, Paragraph, TextRun } from 'docx';
 
 interface LessonPlanDisplayProps {

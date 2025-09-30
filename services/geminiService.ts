@@ -1,5 +1,6 @@
+
 import { GoogleGenAI } from "@google/genai";
-import { GenerationParams } from '../types';
+import { GenerationParams } from '../types.ts';
 
 const API_KEY = process.env.API_KEY;
 

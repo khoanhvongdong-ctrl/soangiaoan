@@ -1,5 +1,6 @@
+
 import React, { useState, useCallback, useRef } from 'react';
-import Loader from './Loader';
+import Loader from './Loader.tsx';
 
 interface FileUploadProps {
   onFileSelect: (file: File) => void;

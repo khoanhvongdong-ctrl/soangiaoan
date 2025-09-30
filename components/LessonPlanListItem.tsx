@@ -1,5 +1,6 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { LessonPlan } from '../types';
+import { LessonPlan } from '../types.ts';
 
 interface LessonPlanListItemProps {
   plan: LessonPlan;
