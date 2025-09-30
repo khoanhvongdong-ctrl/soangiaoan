@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
   <head>
-    <meta charset="UTF--8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Soạn Giáo Án AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,9 +19,12 @@
   }
 }
 </script>
+<!-- Add Babel for in-browser JSX/TSX transpilation -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
   <body class="bg-gray-100">
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    <!-- Change script type to text/babel to enable transpilation -->
+    <script type="text/babel" data-type="module" src="/index.tsx"></script>
   </body>
 </html>

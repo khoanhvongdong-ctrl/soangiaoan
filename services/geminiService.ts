@@ -3,10 +3,8 @@ import { GenerationParams } from '../types';
 
 const API_KEY = process.env.API_KEY;
 
-if (!API_KEY) {
-    throw new Error("API_KEY is not defined in environment variables.");
-}
-
+// Khởi tạo AI client. Lỗi thiếu API key sẽ được xử lý bên trong hàm gọi API,
+// cho phép giao diện người dùng của ứng dụng tải lên một cách bình thường.
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 const buildPrompt = (params: GenerationParams): string => {
@@ -39,6 +37,10 @@ const buildPrompt = (params: GenerationParams): string => {
 
 export const generateLessonPlan = async (params: GenerationParams): Promise<string> => {
     try {
+        if (!API_KEY) {
+            throw new Error("API Key chưa được cấu hình. Vui lòng đảm bảo biến môi trường API_KEY đã được thiết lập.");
+        }
+
         const prompt = buildPrompt(params);
         
         const response = await ai.models.generateContent({
