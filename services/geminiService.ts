@@ -2,12 +2,6 @@
 import { GoogleGenAI } from "@google/genai";
 import { GenerationParams } from '../types.ts';
 
-const API_KEY = process.env.API_KEY;
-
-// Khởi tạo AI client. Lỗi thiếu API key sẽ được xử lý bên trong hàm gọi API,
-// cho phép giao diện người dùng của ứng dụng tải lên một cách bình thường.
-const ai = new GoogleGenAI({ apiKey: API_KEY });
-
 const buildPrompt = (params: GenerationParams): string => {
   return `
     Với vai trò là một chuyên gia về chương trình giáo dục Việt Nam, hãy soạn một giáo án chi tiết.
@@ -37,11 +31,17 @@ const buildPrompt = (params: GenerationParams): string => {
 };
 
 export const generateLessonPlan = async (params: GenerationParams): Promise<string> => {
-    try {
-        if (!API_KEY) {
-            throw new Error("API Key chưa được cấu hình. Vui lòng đảm bảo biến môi trường API_KEY đã được thiết lập.");
-        }
+    // Truy cập API key một cách an toàn để ngăn lỗi 'process is not defined' trong môi trường trình duyệt.
+    const API_KEY = typeof process !== 'undefined' && process.env ? process.env.API_KEY : undefined;
 
+    if (!API_KEY) {
+        throw new Error("API Key chưa được cấu hình. Vui lòng đảm bảo biến môi trường API_KEY đã được thiết lập.");
+    }
+    
+    // Khởi tạo AI client bên trong hàm, chỉ khi cần thiết và key đã tồn tại.
+    const ai = new GoogleGenAI({ apiKey: API_KEY });
+
+    try {
         const prompt = buildPrompt(params);
         
         const response = await ai.models.generateContent({
@@ -62,7 +62,7 @@ export const generateLessonPlan = async (params: GenerationParams): Promise<stri
     } catch (error) {
         console.error("Error generating lesson plan with Gemini:", error);
         if (error instanceof Error) {
-            // Re-throw with a more user-friendly message
+            // Ném lại lỗi với thông báo thân thiện hơn
             throw new Error(`Lỗi khi gọi Gemini API: ${error.message}`);
         }
         throw new Error("Lỗi không xác định từ Gemini API.");
