@@ -1,0 +1,5 @@
+{
+  "name": "Soạn Giáo Án AI",
+  "description": "Một ứng dụng web sử dụng AI để giúp giáo viên tạo giáo án nhanh chóng và hiệu quả từ các tệp mẫu có sẵn. Người dùng có thể tải lên tệp Word hoặc PDF, cung cấp thông tin chi tiết về bài học và AI sẽ tạo ra một giáo án hoàn chỉnh theo đúng thể thức văn bản của Việt Nam.",
+  "requestFramePermissions": []
+}
